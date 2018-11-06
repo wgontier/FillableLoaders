@@ -46,7 +46,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     internal var _progress: CGFloat = 0.0
 
     /// Loader view background color (Default: Clear)
-    override open var backgroundColor: UIColor? {
+    @objc override open var backgroundColor: UIColor? {
         get { return _backgroundColor }
         set {
             super.backgroundColor = mainBgColor
@@ -57,7 +57,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Filled loader color (Default: Blue)
-    open var loaderColor: UIColor? {
+    @objc open var loaderColor: UIColor? {
         get { return _loaderColor }
         set {
             _loaderColor = newValue
@@ -66,7 +66,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Unfilled loader color (Default: White)
-    open var loaderBackgroundColor: UIColor? {
+    @objc open var loaderBackgroundColor: UIColor? {
         get { return _loaderBackgroundColor }
         set {
             _loaderBackgroundColor = newValue
@@ -75,7 +75,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Loader outline line color (Default: Black)
-    open var loaderStrokeColor: UIColor? {
+    @objc open var loaderStrokeColor: UIColor? {
         get { return _loaderStrokeColor }
         set {
             _loaderStrokeColor = newValue
@@ -84,7 +84,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Loader outline line width (Default: 0.5)
-    open var loaderStrokeWidth: CGFloat {
+    @objc open var loaderStrokeWidth: CGFloat {
         get { return _loaderStrokeWidth }
         set {
             _loaderStrokeWidth = newValue
@@ -93,7 +93,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Loader view alpha (Default: 1.0)
-    open var loaderAlpha: CGFloat {
+    @objc open var loaderAlpha: CGFloat {
         get { return _loaderAlpha }
         set {
             _loaderAlpha = newValue
@@ -102,7 +102,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Loader view corner radius (Default: 0.0)
-    open var cornerRadius: CGFloat {
+    @objc open var cornerRadius: CGFloat {
         get { return _cornerRadius }
         set {
             _cornerRadius = newValue
@@ -111,7 +111,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     }
 
     /// Loader fill progress from 0.0 to 1.0 . It will automatically fire an animation to update the loader fill progress (Default: 0.0)
-    open var progress: CGFloat {
+    @objc open var progress: CGFloat {
         get { return _progress }
         set {
             if (!progressBased || newValue > 1.0 || newValue < 0.0) { return }
@@ -130,7 +130,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
 
      :returns: The loader that's already being showed
      */
-    public static func showLoader(with path: CGPath, on view: UIView? = nil) -> Self {
+    @objc public static func showLoader(with path: CGPath, on view: UIView? = nil) -> Self {
         let loader = createLoader(with: path, on: view)
         loader.showLoader()
         return loader
@@ -155,7 +155,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
 
      :returns: The created loader
      */
-    public static func createLoader(with path: CGPath, on view: UIView? = nil) -> Self {
+    @objc public static func createLoader(with path: CGPath, on view: UIView? = nil) -> Self {
         let loader = self.init()
         loader.initialSetup(on: view)
         loader.add(path)
@@ -169,7 +169,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
 
      :returns: The created loader
      */
-    public static func createProgressBasedLoader(with path: CGPath, on view: UIView? = nil) -> Self {
+    @objc public static func createProgressBasedLoader(with path: CGPath, on view: UIView? = nil) -> Self {
         let loader = self.init()
         loader.progressBased = true
         loader.initialSetup(on: view)
@@ -224,7 +224,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
 
      Atention: do not use this method after creating a loader with `showLoaderWithPath(path:)`
      */
-    open func showLoader() {
+    @objc open func showLoader() {
         alpha = 1.0
         isHidden = false
         animate = true
@@ -238,7 +238,7 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     /**
      Stops loader animations and removes it from its superview
      */
-    open func removeLoader(_ animated: Bool = true) {
+    @objc open func removeLoader(_ animated: Bool = true) {
         let completion: () -> () = {
             self.isHidden = false
             self.animate = false
